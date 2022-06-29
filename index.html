@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Actunime RPC BETA</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+  </head>
+  <body>
+    <h3>Actunime RPC BETA</h3>
+    <p>Cela vous met le statut custom de Actunime sur Discord.</p>
+
+    Démarrer avec windows <input name="autostart" id="set-auto-start" type="checkbox" />
+    <!-- You can also require other files to run in this process -->
+    <script src="./build/renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "name": "actunime-rpc-beta",
+  "productName": "Actunime RPC BETA",
+  "version": "1.0.0",
+  "description": "Statut personnalisé dédié à Actunime pour Discord.",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint -c .eslintrc --ext .ts ./src",
+    "start": "electron-forge start",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "asar": true,
+    "compression": "maximum",
+    "files": [
+      "build",
+      "index.html"
+    ],
+    "appId": "fr.actunime.Actunime RPC BETA",
+    "win": {
+      "target": ["nsis"],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "uninstallDisplayName": "Actunime RPC désinstallation",
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "Actunime",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@types/discord-rpc": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "electron": "^18.2.3",
+    "eslint": "^7.32.0",
+    "typescript": "^4.7.2",
+    "electron-builder": "^23.1.0"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "jsonfile": "^6.1.0"
+  }
+}
