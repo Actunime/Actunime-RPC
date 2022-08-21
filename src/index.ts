@@ -1,59 +1,57 @@
 import { app, Menu, Tray, BrowserWindow, ipcMain, dialog, Notification } from "electron";
 import * as path from "path";
 import * as DiscordRPC from 'discord-rpc';
+import { LocalStorage } from 'node-localstorage';
+import RPC from "./discord";
 
+const db = new LocalStorage('./db');
 
+let config = db.getItem('conf') ? JSON.parse(db.getItem('conf')) : {};
 
-let tray = null
+console.log('test', config)
 
-let mainWindow: BrowserWindow = null
+const rpc = new RPC(app);
+
+let tray = null;
+let mainWindow: BrowserWindow = null;
 
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 200,
-    width: 300,
-    icon: __dirname + "/icon.ico",
+    height: 600,
+    width: 450,
+    icon: __dirname + "/iconx256.ico",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
     autoHideMenuBar: true,
+    resizable: false
   });
 
-  // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
-  // Open the DevTools.
   // mainWindow.webContents.openDevTools();
+
   mainWindow.on('close', async (event) => {
-    if ((app as any).quitting) {
-      return;
-    }
-    event.preventDefault();
-
-    let response = await dialog.showMessageBox(mainWindow, {
-      noLink: true,
-      type: 'question',
-      buttons: ["Oui", "Oui mais laisser en arrière plan", "Non"],
-      title: "Actunime confirmation",
-      message: "Voulez vous vraiment quitter cette page ?"
-    })
-
-    if (response.response === 0) {
-      (app as any).quitting = true
-      app.quit();
-    } else if (response.response === 1) {
-      new Notification({ title: "Actunime", body: "L'application est ouvert en arrière plan." }).show();
-      return mainWindow.hide();
+    if (mainWindow.isVisible()) {
+      event.preventDefault();
+      mainWindow.hide();
+      new Notification({ title: "Actunime", body: "L'application est toujours ouvert en arrière plan." }).show();
     }
   })
+
+  mainWindow.webContents.on('new-window', function (e, url) {
+    e.preventDefault();
+    require('electron').shell.openExternal(url);
+  });
 }
 
 app.on("ready", () => {
   let settings = app.getLoginItemSettings();
+  let startAtLogin = settings.executableWillLaunchAtLogin;
 
-  ipcMain.handle('check-auto-start', () => {
-    return settings.executableWillLaunchAtLogin;
+  ipcMain.handle('get-auto-start', () => {
+    return startAtLogin;
   });
 
   const exeName = path.basename(process.execPath);
@@ -76,11 +74,58 @@ app.on("ready", () => {
     }
   })
 
-  tray = new Tray(__dirname + "/icon.ico");
+  ipcMain.on('set-auto-bg', (event, to) => {
+    console.log(to)
+    config['set-auto-bg'] = to ? true : false;
+    console.log(config)
+    db.setItem('conf', JSON.stringify(config));
+  })
+
+  ipcMain.handle('get-auto-bg', () => {
+    return config?.['set-auto-bg'] || false;
+  });
+
+  var inputs = [
+    'set-rpc-id',
+    'set-rpc-desc1',
+    'set-rpc-desc2',
+    'set-rpc-img1',
+    'set-rpc-img2',
+    'set-rpc-img-text1',
+    'set-rpc-img-text2',
+    'set-rpc-btn1',
+    'set-rpc-btn2',
+    'set-rpc-btn-link1',
+    'set-rpc-btn-link2',
+  ]
+
+  for (let i = 0; i < inputs.length; i++) {
+    const id = inputs[i];
+    ipcMain.on(id, (_, value) => {
+      config[id] = value.length ? value : undefined;
+      db.setItem('conf', JSON.stringify(config));
+      rpc.reload();
+    })
+
+    ipcMain.handle(id.replace('set', 'get'), () => {
+      return config?.[id] || "";
+    });
+  }
+
+  tray = new Tray(__dirname + "/iconx256.ico");
 
   const contextMenu = Menu.buildFromTemplate([
-    { role: "quit", label: 'Fermer', type: 'normal' },
-    { role: "reload", label: 'Recharger', type: "normal" }
+    {
+      label: 'Fermer', type: 'normal', click: () => {
+        mainWindow.hide();
+        app.quit();
+      }
+    },
+    {
+      label: 'Recharger', type: "normal", click: () => {
+        app.relaunch();
+      }
+    }
   ])
 
   tray.setContextMenu(contextMenu);
@@ -89,22 +134,22 @@ app.on("ready", () => {
 
   tray.on('click', (event) => {
 
-    mainWindow.show();
+    if (mainWindow) mainWindow.show();
+    else createWindow();
 
   });
 
-  createWindow();
-
-  app.on('activate', () => {
-    if (settings.executableWillLaunchAtLogin) {
-      mainWindow.hide();
-      new Notification({ title: "Actunime", body: "L'application est ouvert en arrière plan." }).show();
-    } else {
-      mainWindow.show();
-    }
-  });
+  if (config["set-auto-bg"]) {
+    new Notification({ title: "Actunime", body: "Actunime RPC s'est ouvert en arrière plan." }).show();
+  } else {
+    createWindow();
+  }
 
 });
+
+if (process.platform === 'win32') {
+  app.setAppUserModelId(app.name)
+}
 
 app.on("window-all-closed", () => {
 
@@ -113,36 +158,3 @@ app.on("window-all-closed", () => {
   }
 
 });
-
-
-const clientId = '957417842867851324';
-DiscordRPC.register(clientId);
-
-let timeInterval = 5000;
-
-let checkTimeout = () => {
-
-  const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-
-  rpc.on('ready', () => {
-
-    rpc.setActivity({
-      details: `Anime / Manga / Actu`,
-      state: 'Rejoignez-nous et découvez notre univers !',
-      largeImageKey: 'large_logo',
-      largeImageText: 'Actunime',
-      buttons: [{ label: "Rejoindre", url: "https://discord.gg/uQzXRbvMKq" }]
-    });
-
-  });
-
-  setTimeout(() => {
-    rpc.login({ clientId }).catch(() => {
-      timeInterval = timeInterval + timeInterval;
-      checkTimeout();
-    });
-  }, timeInterval);
-
-}
-
-checkTimeout();

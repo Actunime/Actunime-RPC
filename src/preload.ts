@@ -17,17 +17,62 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 
 
-  const result = await ipcRenderer.invoke('check-auto-start');
-  let check = document.getElementById('set-auto-start');
+  const autoStartRes = await ipcRenderer.invoke('get-auto-start');
+  let autoStart = document.getElementById('set-auto-start');
+  if (autoStart) {
+    (autoStart as any).checked = autoStartRes;
+  }
 
-  if (check) {
-    (check as any).checked = result;
+  const autoBgRes = await ipcRenderer.invoke('get-auto-bg');
+  let autoBg = document.getElementById('set-auto-bg');
+  if (autoBg) {
+    (autoBg as any).checked = autoBgRes;
+  }
+
+  let inputs = [
+    'get-rpc-id',
+    'get-rpc-desc1',
+    'get-rpc-desc2',
+    'get-rpc-img1',
+    'get-rpc-img2',
+    'get-rpc-img-text1',
+    'get-rpc-img-text2',
+    'get-rpc-btn1',
+    'get-rpc-btn2',
+    'get-rpc-btn-link1',
+    'get-rpc-btn-link2',
+  ]
+
+  for (let i = 0; i < inputs.length; i++) {
+    const id = inputs[i];
+    let docRes = await ipcRenderer.invoke(id);
+    console.log(docRes)
+    let doc = document.getElementById(id.replace('get', 'set'));
+    (doc as any).defaultValue = docRes;
   }
 
 });
 
-contextBridge.exposeInMainWorld('test', {
-  send: (arg: string) => {
-    ipcRenderer.send('set-auto-start', arg)
-  }
-});
+let inputs = [
+  'set-auto-bg',
+  'set-rpc-id',
+  'set-rpc-desc1',
+  'set-rpc-desc2',
+  'set-rpc-img1',
+  'set-rpc-img2',
+  'set-rpc-img-text1',
+  'set-rpc-img-text2',
+  'set-rpc-btn1',
+  'set-rpc-btn2',
+  'set-rpc-btn-link1',
+  'set-rpc-btn-link2',
+]
+
+for (let i = 0; i < inputs.length; i++) {
+  const id = inputs[i];
+  contextBridge.exposeInMainWorld(id, {
+    send: (arg: string) => {
+      ipcRenderer.send(id, arg)
+    }
+  });
+}

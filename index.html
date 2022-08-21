@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
     <title>Actunime RPC BETA</title>
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
@@ -15,10 +15,85 @@
     />
   </head>
   <body>
-    <h3>Actunime RPC BETA</h3>
-    <p>Cela vous met le statut custom de Actunime sur Discord.</p>
-
-    Démarrer avec windows <input name="autostart" id="set-auto-start" type="checkbox" />
+    <div class="topBar">
+      <h3>Actunime</h3>
+      <p>Statut customisable par DevLeriTo</p>
+    </div>
+    <div class="pageContent">
+      <div class="options">
+        <h3>Options de démarrage</h3>
+        <label>
+          Démarrer avec windows
+          <input name="autostart" id="set-auto-start" type="checkbox"
+        /></label>
+        <label>
+          Démarrer en arrière plan.
+          <input name="autostart" id="set-auto-bg" type="checkbox"
+        /></label>
+      </div>
+      <div class="config">
+        <h3>Configuration du statut</h3>
+        <label
+          >Identifiant client<input id="set-rpc-id" spellcheck="false"
+        /></label>
+        <p>
+          Vous devez vous rendre sur
+          <a href="https://discord.com/developers/applications" target="_blank"
+            >https://discord.com/developers/applications</a
+          >
+          créer une nouvelle application puis copier son Identifiant
+          <b>APPLICATION ID</b> et la coller ci-dessus.
+        </p>
+        <label
+          >Description 1<input id="set-rpc-desc1" spellcheck="false"
+        /></label>
+        <label
+          >Description 2<input id="set-rpc-desc2" spellcheck="false"
+        /></label>
+        <label
+          >Clé de la grande image<input id="set-rpc-img1" spellcheck="false"
+        /></label>
+        <p>
+          Pour avoir une clé vous devez ajouter une image dans la rubrique "Rich
+          presence" puis "Art assets" vous prendrez ensuite le nom de l'image.
+        </p>
+        <label
+          >Texte de la grande image<input
+            id="set-rpc-img-text1"
+            spellcheck="false"
+        /></label>
+        <p>
+          Le texte est une mini description quand vous passez la souris sur
+          l'image.
+        </p>
+        <label
+          >Clé de la petite image<input id="set-rpc-img2" spellcheck="false"
+        /></label>
+        <label
+          >Texte de la petite image<input
+            id="set-rpc-img-text2"
+            spellcheck="false"
+        /></label>
+        <label
+          >Nom bouton 1<input
+            placeholder="ex Rejoindre"
+            id="set-rpc-btn1"
+            spellcheck="false"
+        /></label>
+        <label
+          >Lien bouton 1<input
+            placeholder="ex https://google..."
+            id="set-rpc-btn-link1"
+            spellcheck="false"
+        /></label>
+        <label
+          >Nom bouton 2<input id="set-rpc-btn2" spellcheck="false"
+        /></label>
+        <label
+          >Lien bouton 2<input id="set-rpc-btn-link2" spellcheck="false"
+        /></label>
+      </div>
+    </div>
     <!-- You can also require other files to run in this process -->
     <script src="./build/renderer.js"></script>
   </body>
