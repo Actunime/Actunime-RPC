@@ -17,16 +17,35 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 
 
-  const autoStartRes = await ipcRenderer.invoke('get-auto-start');
-  let autoStart = document.getElementById('set-auto-start');
-  if (autoStart) {
-    (autoStart as any).checked = autoStartRes;
-  }
+  // const autoStartRes = await ipcRenderer.invoke('get-auto-start');
+  // let autoStart = document.getElementById('set-auto-start');
+  // if (autoStart) {
+  //   (autoStart as any).checked = autoStartRes;
+  // }
 
-  const autoBgRes = await ipcRenderer.invoke('get-auto-bg');
-  let autoBg = document.getElementById('set-auto-bg');
-  if (autoBg) {
-    (autoBg as any).checked = autoBgRes;
+  // const autoBgRes = await ipcRenderer.invoke('get-auto-bg');
+  // let autoBg = document.getElementById('set-auto-bg');
+  // if (autoBg) {
+  //   (autoBg as any).checked = autoBgRes;
+  // }
+
+  var inputsCheckbox = [
+    'set-auto-start',
+    'set-auto-bg',
+    'set-stream-auto',
+    'set-stream-desc1',
+    'set-stream-desc2',
+    'set-stream-cooldown',
+    'set-stream-btn2'
+  ]
+
+  for (let o = 0; o < inputsCheckbox.length; o++) {
+    const id = inputsCheckbox[o];
+    const res = await ipcRenderer.invoke(id.replace('set', 'get'));
+    let element = document.getElementById(id);
+    if (element) {
+      (element as any).checked = res;
+    }
   }
 
   let inputs = [
@@ -41,6 +60,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     'get-rpc-btn2',
     'get-rpc-btn-link1',
     'get-rpc-btn-link2',
+    'get-stream-user',
+    'get-stream-auto',
+    'get-stream-desc1',
+    'get-stream-desc2',
+    'get-stream-cooldown',
+    'get-stream-btn2'
   ]
 
   for (let i = 0; i < inputs.length; i++) {
@@ -66,6 +91,12 @@ let inputs = [
   'set-rpc-btn2',
   'set-rpc-btn-link1',
   'set-rpc-btn-link2',
+  'set-stream-user',
+  'set-stream-auto',
+  'set-stream-desc1',
+  'set-stream-desc2',
+  'set-stream-cooldown',
+  'set-stream-btn2'
 ]
 
 for (let i = 0; i < inputs.length; i++) {

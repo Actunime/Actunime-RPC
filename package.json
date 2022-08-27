@@ -1,8 +1,8 @@
 {
-  "name": "actunime-rpc-beta",
-  "productName": "Actunime RPC BETA",
+  "name": "rpc-custom-by-devlerito",
+  "productName": "Actunime RPC",
   "version": "1.0.3",
-  "description": "Statut personnalisé dédié à Actunime pour Discord.",
+  "description": "Statut personnalisé pour Discord, il est possible que cette application évolue dans le temps.",
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
@@ -18,7 +18,7 @@
       "build",
       "index.html"
     ],
-    "appId": "fr.actunime.Actunime RPC BETA",
+    "appId": "fr.actunime.actunime",
     "win": {
       "target": [
         "nsis"
@@ -42,16 +42,20 @@
     "@types/node-localstorage": "^1.3.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "electron": "^18.2.3",
+    "electron": "^20.0.3",
     "electron-builder": "^23.1.0",
     "eslint": "^7.32.0",
     "typescript": "^4.7.2"
   },
   "dependencies": {
+    "@commonify/lowdb": "^3.0.0",
+    "axios": "^0.27.2",
     "discord-rpc": "^4.0.1",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-unhandled": "^4.0.1",
     "jsonfile": "^6.1.0",
+    "lowdb": "^3.0.0",
     "node-localstorage": "^2.2.1"
   }
 }

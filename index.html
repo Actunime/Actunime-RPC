@@ -2,33 +2,93 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <title>Actunime RPC BETA</title>
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+
+    <style>
+      body,
+      html {
+        margin: 0;
+        height: 100%;
+      }
+
+      .pageContent {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        height: calc(100% - 60px);
+      }
+
+      .topBar {
+        background-color: rgb(229, 229, 229);
+        height: 50px;
+        display: grid;
+        align-items: center;
+        padding: 5px 10px;
+      }
+      .topBar h3 {
+        font-size: 25px;
+        margin: 0;
+      }
+
+      .topBar p {
+        font-size: 13px;
+        margin: 0;
+      }
+
+      .options {
+        padding: 5px 10px;
+        display: grid;
+        grid-template-rows: auto auto auto;
+      }
+      .options h3 {
+        margin: 0;
+        margin-bottom: 5px;
+      }
+
+      .config {
+        padding: 5px 10px;
+        display: grid;
+        row-gap: 5px;
+      }
+      .config h3 {
+        margin: 0;
+        margin-bottom: 5px;
+      }
+
+      .config p {
+        margin: 0;
+        font-size: 13px;
+      }
+      .config label {
+        display: grid;
+        grid-template-columns: min-content auto;
+        /* justify-content: left; */
+        column-gap: 10px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .config label input[type='checkbox'] {
+        margin-right: auto;
+      }
+    </style>
   </head>
   <body>
     <div class="topBar">
       <h3>Actunime</h3>
-      <p>Statut customisable par DevLeriTo</p>
+      <p>Statut customisable par DevLeriTo | Version libre</p>
     </div>
     <div class="pageContent">
       <div class="options">
         <h3>Options de démarrage</h3>
         <label>
           Démarrer avec windows
-          <input name="autostart" id="set-auto-start" type="checkbox"
+          <input id="set-auto-start" type="checkbox"
         /></label>
         <label>
           Démarrer en arrière plan.
-          <input name="autostart" id="set-auto-bg" type="checkbox"
+          <input id="set-auto-bg" type="checkbox"
         /></label>
       </div>
       <div class="config">
@@ -54,8 +114,9 @@
           >Clé de la grande image<input id="set-rpc-img1" spellcheck="false"
         /></label>
         <p>
-          Pour avoir une clé vous devez ajouter une image dans la rubrique "Rich
-          presence" puis "Art assets" vous prendrez ensuite le nom de l'image.
+          Pour avoir une clé vous devez ajouter une image sous la rubrique "Rich
+          Présence" puis "art assets" de votre application puis vous prenez
+          ensuite le nom de l'image.
         </p>
         <label
           >Texte de la grande image<input
@@ -86,11 +147,59 @@
             id="set-rpc-btn-link1"
             spellcheck="false"
         /></label>
+        <p>Lien obligatoire sinon le bouton apparait pas sur le statut.</p>
         <label
           >Nom bouton 2<input id="set-rpc-btn2" spellcheck="false"
         /></label>
         <label
           >Lien bouton 2<input id="set-rpc-btn-link2" spellcheck="false"
+        /></label>
+      </div>
+
+      <div class="config">
+        <h3>Streaming twitch</h3>
+        <label
+          >Nom de la chaine twitch<input
+            id="set-stream-user"
+            spellcheck="false"
+        /></label>
+        <label>
+          Mode streamer
+          <input id="set-stream-auto" type="checkbox"
+        /></label>
+        <p>
+          Le mode streamer permet de détecter automatiquement si la chaine
+          twitch renseigné est en live et d'appliquer les paramètres ci-dessous,
+          une actualisation sera faite toute les minutes.
+        </p>
+        <h3>Option statut live en cours</h3>
+        <label>
+          <span>
+            Modifier la
+            <span style="text-decoration: underline">Description 1</span> en
+            titre du live</span
+          >
+          <input id="set-stream-desc1" type="checkbox"
+        /></label>
+        <label>
+          <span
+            >Modifier la
+            <span style="text-decoration: underline">Description 2</span> en nom
+            du jeu streamer avec le nombre de spectateur.</span
+          >
+          <input id="set-stream-desc2" type="checkbox"
+        /></label>
+        <label>
+          Ajouter le temps écroulé depuis le début du live
+          <input id="set-stream-cooldown" type="checkbox"
+        /></label>
+        <label>
+          <span>
+            Modifier le
+            <span style="text-decoration: underline">Bouton 2</span> en
+            "Regarder" avec comme lien direct sur la chaine twitch</span
+          >
+          <input id="set-stream-btn2" type="checkbox"
         /></label>
       </div>
     </div>
