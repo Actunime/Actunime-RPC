@@ -1,0 +1,9 @@
+[2022-08-28 00:54:36.193] [error] Error: child "activity" fails because [child "buttons" fails because ["buttons" at position 1 fails because [child "url" fails because ["url" is required]]]]
+    at RPCClient._onRpcMessage (C:\Users\devma\Desktop\Actunime RPC Versions\Actunime RPC - Version avec twitch\node_modules\discord-rpc\src\client.js:178:19)
+    at IPCTransport.emit (node:events:527:28)
+    at C:\Users\devma\Desktop\Actunime RPC Versions\Actunime RPC - Version avec twitch\node_modules\discord-rpc\src\transports\ipc.js:138:18
+    at decode (C:\Users\devma\Desktop\Actunime RPC Versions\Actunime RPC - Version avec twitch\node_modules\discord-rpc\src\transports\ipc.js:92:5)
+    at Socket.<anonymous> (C:\Users\devma\Desktop\Actunime RPC Versions\Actunime RPC - Version avec twitch\node_modules\discord-rpc\src\transports\ipc.js:120:7)
+    at Socket.emit (node:events:527:28)
+    at emitReadable_ (node:internal/streams/readable:578:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)

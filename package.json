@@ -51,6 +51,7 @@
     "@commonify/lowdb": "^3.0.0",
     "axios": "^0.27.2",
     "discord-rpc": "^4.0.1",
+    "electron-log": "^4.4.8",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-squirrel-startup": "^1.0.0",
     "electron-unhandled": "^4.0.1",

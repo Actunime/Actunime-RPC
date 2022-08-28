@@ -1,16 +1,6 @@
-// document.getElementById('set-auto-start').onchange = ((event) => {
-//     console.log((event.target as any).checked);
-//     (window as any)['set-auto-start'].send((event.target as any).checked);
-// })
-
-// document.getElementById('set-auto-bg').onchange = ((event) => {
-//     console.log('auto-bg');
-//     (window as any)['set-auto-bg'].send((event.target as any).checked);
-// });
-
 var inputsCheckbox = [
-    'set-auto-start',
     'set-auto-bg',
+    'set-auto-start',
     'set-stream-auto',
     'set-stream-desc1',
     'set-stream-desc2',
@@ -21,7 +11,7 @@ var inputsCheckbox = [
 for (let i = 0; i < inputsCheckbox.length; i++) {
     const id = inputsCheckbox[i];
     document.getElementById(id).onchange = ((event) => {
-        console.log('auto-bg');
+        console.log(id, (window as any)[id]);
         (window as any)[id].send((event.target as any).checked);
     });
 }

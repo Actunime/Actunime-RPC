@@ -16,19 +16,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 
 
-
-  // const autoStartRes = await ipcRenderer.invoke('get-auto-start');
-  // let autoStart = document.getElementById('set-auto-start');
-  // if (autoStart) {
-  //   (autoStart as any).checked = autoStartRes;
-  // }
-
-  // const autoBgRes = await ipcRenderer.invoke('get-auto-bg');
-  // let autoBg = document.getElementById('set-auto-bg');
-  // if (autoBg) {
-  //   (autoBg as any).checked = autoBgRes;
-  // }
-
   var inputsCheckbox = [
     'set-auto-start',
     'set-auto-bg',
@@ -79,6 +66,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 let inputs = [
+  'set-auto-start',
   'set-auto-bg',
   'set-rpc-id',
   'set-rpc-desc1',
