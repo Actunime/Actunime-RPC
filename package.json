@@ -9,13 +9,15 @@
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "electron-forge start",
-    "build-installer": "electron-builder --win --x64"
+    "build-installer":  "electron-builder",
+    "build-installer-win": "electron-builder --win --x64"
   },
   "build": {
     "asar": true,
     "compression": "maximum",
     "files": [
       "build",
+      "assets",
       "index.html"
     ],
     "appId": "fr.actunime.actunime",

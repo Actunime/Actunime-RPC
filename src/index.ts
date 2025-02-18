@@ -75,7 +75,7 @@ app.on("ready", async () => {
   log.log("Application prête");
   log.log("Basepath :", app.getPath("exe"));
 
-  const dbFile = join("db.json");
+  const dbFile = join(app.getPath("userData"), "db.json");
   const adapter = new JSONFile<{ [key: string]: any }>(dbFile);
   const db = new Low<{ [key: string]: any }>(adapter);
   await db.read();
