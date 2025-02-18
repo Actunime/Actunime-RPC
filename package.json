@@ -1,7 +1,7 @@
 {
   "name": "rpc-custom-by-devlerito",
   "productName": "Actunime RPC",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Statut personnalisé pour Discord, il est possible que cette application évolue dans le temps.",
   "main": "build/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "electron-forge start",
-    "build-installer": "electron-builder"
+    "build-installer": "electron-builder --win --x64"
   },
   "build": {
     "asar": true,
@@ -23,11 +23,16 @@
       "target": [
         "nsis"
       ],
-      "icon": "build/iconx256.ico"
+      "icon": "assets/iconx256.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon512.png",
+      "category": "public.app-category.utilities"
     },
     "nsis": {
-      "installerIcon": "build/iconx256.ico",
-      "uninstallerIcon": "build/iconx256.ico",
+      "installerIcon": "assets/iconx256.ico",
+      "uninstallerIcon": "assets/iconx256.ico",
       "uninstallDisplayName": "Actunime RPC",
       "license": "license.txt",
       "oneClick": false,

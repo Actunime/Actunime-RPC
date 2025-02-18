@@ -7,3 +7,392 @@
     at Socket.emit (node:events:527:28)
     at emitReadable_ (node:internal/streams/readable:578:12)
     at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2025-02-18 01:06:25.149] [info]  Démarrage du processus 8115
+[2025-02-18 01:06:25.235] [info]  Application prêt
+[2025-02-18 01:06:25.236] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:06:25.271] [info]  Ouverture en arrière plan...
+[2025-02-18 01:06:25.391] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:06:30.937] [info]  client RPC prêt
+[2025-02-18 01:06:30.938] [info]  client RPC connecté
+[2025-02-18 01:06:31.136] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:07:12.103] [info]  Démarrage du processus 8299
+[2025-02-18 01:07:12.172] [info]  Application prêt
+[2025-02-18 01:07:12.173] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:07:12.207] [info]  Ouverture en arrière plan...
+[2025-02-18 01:07:12.304] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:07:39.107] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:08:34.886] [info]  Démarrage du processus 8449
+[2025-02-18 01:08:34.948] [info]  Application prêt
+[2025-02-18 01:08:34.949] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:08:34.971] [info]  Ouverture en arrière plan...
+[2025-02-18 01:08:35.053] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:08:46.753] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:09:47.116] [info]  Démarrage du processus 8545
+[2025-02-18 01:09:47.176] [info]  Application prêt
+[2025-02-18 01:09:47.176] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:09:47.199] [info]  Ouverture en arrière plan...
+[2025-02-18 01:09:47.283] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:10:03.286] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:10:21.701] [info]  Démarrage du processus 8617
+[2025-02-18 01:10:21.766] [info]  Application prêt
+[2025-02-18 01:10:21.767] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:10:21.792] [info]  Ouverture en arrière plan...
+[2025-02-18 01:10:21.873] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:10:46.217] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:10:56.238] [info]  client RPC prêt
+[2025-02-18 01:10:56.239] [info]  client RPC connecté
+[2025-02-18 01:10:56.250] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:12:22.422] [info]  Démarrage du processus 8723
+[2025-02-18 01:12:22.490] [info]  Application prêt
+[2025-02-18 01:12:22.491] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:12:22.515] [info]  Ouverture en arrière plan...
+[2025-02-18 01:12:22.592] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:341:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:12:31.656] [info]  client RPC prêt
+[2025-02-18 01:12:31.657] [info]  client RPC connecté
+[2025-02-18 01:14:04.129] [info]  Démarrage du processus 8836
+[2025-02-18 01:14:04.191] [info]  Application prêt
+[2025-02-18 01:14:04.192] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:14:04.215] [info]  Ouverture en arrière plan...
+[2025-02-18 01:14:04.305] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:14:16.730] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:15:05.836] [info]  Démarrage du processus 8934
+[2025-02-18 01:15:05.895] [info]  Application prêt
+[2025-02-18 01:15:05.896] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:15:05.918] [info]  Ouverture en arrière plan...
+[2025-02-18 01:15:05.998] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:15:25.494] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:16:09.737] [info]  Démarrage du processus 9018
+[2025-02-18 01:16:09.795] [info]  Application prêt
+[2025-02-18 01:16:09.796] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:16:09.818] [info]  Ouverture en arrière plan...
+[2025-02-18 01:16:09.903] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:16:25.777] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:17:56.410] [info]  Démarrage du processus 9118
+[2025-02-18 01:17:56.468] [info]  Application prêt
+[2025-02-18 01:17:56.469] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:17:56.493] [info]  Ouverture en arrière plan...
+[2025-02-18 01:17:56.578] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build../assets/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:18:16.347] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:18:56.332] [info]  Démarrage du processus 9203
+[2025-02-18 01:18:56.389] [info]  Application prêt
+[2025-02-18 01:18:56.390] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:18:56.412] [info]  Ouverture en arrière plan...
+[2025-02-18 01:18:56.498] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build..assets/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:19:07.449] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:19:23.317] [info]  Démarrage du processus 9287
+[2025-02-18 01:19:23.378] [info]  Application prêt
+[2025-02-18 01:19:23.379] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:19:23.403] [info]  Ouverture en arrière plan...
+[2025-02-18 01:19:23.487] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:19:41.837] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:20:01.678] [info]  Démarrage du processus 9361
+[2025-02-18 01:20:01.750] [info]  Application prêt
+[2025-02-18 01:20:01.750] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:20:01.775] [info]  Ouverture en arrière plan...
+[2025-02-18 01:20:01.890] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/build'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:20:38.946] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:21:04.976] [info]  Démarrage du processus 9492
+[2025-02-18 01:21:05.034] [info]  Application prêt
+[2025-02-18 01:21:05.035] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:21:05.060] [info]  Ouverture en arrière plan...
+[2025-02-18 01:21:05.149] [error] Error: Failed to load image from path '../assets/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:21:20.382] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:22:19.003] [info]  Démarrage du processus 9581
+[2025-02-18 01:22:19.060] [info]  Application prêt
+[2025-02-18 01:22:19.061] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:22:19.084] [info]  Ouverture en arrière plan...
+[2025-02-18 01:22:19.169] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/assets/icon.ico'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:22:32.685] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:23:03.932] [info]  Démarrage du processus 9680
+[2025-02-18 01:23:03.991] [info]  Application prêt
+[2025-02-18 01:23:03.992] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:23:04.014] [info]  Ouverture en arrière plan...
+[2025-02-18 01:23:04.096] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/assets/icon.png'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:340:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:24:05.080] [error] connexion a discord impossible tantative 1 Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:25:11.895] [info]  Démarrage du processus 9800
+[2025-02-18 01:25:11.967] [info]  Application prêt
+[2025-02-18 01:25:11.968] [info]  basepath /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:25:11.992] [info]  Ouverture en arrière plan...
+[2025-02-18 01:25:12.113] [info]  client RPC prêt
+[2025-02-18 01:25:12.114] [info]  client RPC connecté
+[2025-02-18 01:25:12.186] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:25:27.475] [info]  Une fenetre a été crée...
+[2025-02-18 01:26:05.631] [error] connexion a discord impossible tantative 1 Error: connection closed
+    at IPCTransport.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:111:16)
+    at Object.onceWrapper (node:events:642:26)
+    at IPCTransport.emit (node:events:527:28)
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:141:18
+    at decode (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:92:5)
+    at Socket.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:120:7)
+    at Socket.emit (node:events:527:28)
+    at emitReadable_ (node:internal/streams/readable:578:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2025-02-18 01:26:15.833] [error] connexion a discord impossible tantative 2 Error: connection closed
+    at IPCTransport.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:111:16)
+    at Object.onceWrapper (node:events:642:26)
+    at IPCTransport.emit (node:events:527:28)
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:141:18
+    at decode (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:92:5)
+    at Socket.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:120:7)
+    at Socket.emit (node:events:527:28)
+    at emitReadable_ (node:internal/streams/readable:578:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2025-02-18 01:26:35.596] [error] connexion a discord impossible tantative 3 Error: connection closed
+    at IPCTransport.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:111:16)
+    at Object.onceWrapper (node:events:642:26)
+    at IPCTransport.emit (node:events:527:28)
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:141:18
+    at decode (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:92:5)
+    at Socket.<anonymous> (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/transports/ipc.js:120:7)
+    at Socket.emit (node:events:527:28)
+    at emitReadable_ (node:internal/streams/readable:578:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2025-02-18 01:26:47.086] [info]  client RPC prêt
+[2025-02-18 01:26:47.087] [info]  client RPC connecté
+[2025-02-18 01:26:47.160] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:26:57.671] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:27:43.998] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:27:49.186] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:28:47.061] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:28:53.449] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:28:58.320] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:28:59.339] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:29:28.418] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:29:29.501] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:29:30.531] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:30:09.549] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:30:10.409] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:30:23.880] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:30:51.525] [info]  client RPC le statut a été mise a jour.
+[2025-02-18 01:38:03.855] [info]  Démarrage du processus 10167
+[2025-02-18 01:38:03.912] [info]  Application prête
+[2025-02-18 01:38:03.912] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:38:03.938] [info]  Lancement en arrière plan...
+[2025-02-18 01:38:04.015] [error] Error: Failed to load image from path '/Users/gonzyui/Desktop/git/Actunime-RPC/assets/iconTemplate.png'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:314:24
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:56:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:37:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:28:58)
+[2025-02-18 01:38:11.697] [info]  Client Discord RPC prêt.
+[2025-02-18 01:38:11.698] [info]  Client Discord RPC connecté.
+[2025-02-18 01:38:11.704] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:38:41.024] [info]  Démarrage du processus 10237
+[2025-02-18 01:38:41.084] [info]  Application prête
+[2025-02-18 01:38:41.085] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:38:41.110] [info]  Lancement en arrière plan...
+[2025-02-18 01:38:41.213] [info]  Client Discord RPC prêt.
+[2025-02-18 01:38:41.214] [info]  Client Discord RPC connecté.
+[2025-02-18 01:38:41.219] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:38:49.217] [info]  Fenêtre principale créée.
+[2025-02-18 01:41:38.722] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:41:41.874] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:47:11.383] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:47:15.335] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:47:29.580] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:47:33.056] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:50:02.451] [info]  Démarrage du processus 10650
+[2025-02-18 01:50:02.507] [info]  Application prête
+[2025-02-18 01:50:02.508] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:50:02.538] [info]  Lancement en arrière plan...
+[2025-02-18 01:50:02.648] [info]  Client Discord RPC prêt.
+[2025-02-18 01:50:02.649] [info]  Client Discord RPC connecté.
+[2025-02-18 01:50:02.655] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 01:50:08.274] [info]  Fenêtre principale créée.
+[2025-02-18 01:57:10.978] [info]  Démarrage du processus 10890
+[2025-02-18 01:57:11.037] [info]  Application prête
+[2025-02-18 01:57:11.038] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:57:11.068] [info]  Lancement en arrière-plan...
+[2025-02-18 01:57:11.144] [error] Error: Failed to load image from path ''
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:345:28
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:67:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:48:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:39:58)
+[2025-02-18 01:58:28.643] [error] Tentative 1 de connexion échouée: Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:58:28.644] [info]  Rechargement du client Discord RPC...
+[2025-02-18 01:58:39.104] [info]  Démarrage du processus 10985
+[2025-02-18 01:58:39.163] [info]  Application prête
+[2025-02-18 01:58:39.164] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 01:58:39.193] [info]  Lancement en arrière-plan...
+[2025-02-18 01:58:39.273] [error] Error: Failed to load image from path ''
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:345:28
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:67:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:48:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:39:58)
+[2025-02-18 01:58:54.822] [error] Tentative 1 de connexion échouée: Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 01:58:54.823] [info]  Rechargement du client Discord RPC...
+[2025-02-18 01:59:04.850] [info]  Client Discord RPC prêt après reload.
+[2025-02-18 01:59:04.851] [info]  Client Discord RPC connecté.
+[2025-02-18 01:59:04.859] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:00:48.590] [info]  Démarrage du processus 11106
+[2025-02-18 02:00:48.659] [info]  Application prête
+[2025-02-18 02:00:48.660] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:00:48.692] [info]  Lancement en arrière-plan...
+[2025-02-18 02:00:48.764] [error] Error: Failed to load image from path '../assets/icon44.png'
+    at /Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:345:28
+    at step (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:67:23)
+    at Object.next (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:48:53)
+    at fulfilled (/Users/gonzyui/Desktop/git/Actunime-RPC/build/index.js:39:58)
+[2025-02-18 02:01:07.477] [error] Tentative 1 de connexion échouée: Error: RPC_CONNECTION_TIMEOUT
+    at Timeout._onTimeout (/Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/discord-rpc/src/client.js:100:47)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+[2025-02-18 02:01:07.478] [info]  Rechargement du client Discord RPC...
+[2025-02-18 02:01:51.047] [info]  Démarrage du processus 11190
+[2025-02-18 02:01:51.105] [info]  Application prête
+[2025-02-18 02:01:51.106] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:01:51.132] [info]  Lancement en arrière-plan...
+[2025-02-18 02:01:51.246] [info]  Client Discord RPC prêt.
+[2025-02-18 02:01:51.247] [info]  Client Discord RPC connecté.
+[2025-02-18 02:01:51.253] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:02:11.660] [info]  Fenêtre principale créée.
+[2025-02-18 02:03:41.262] [info]  Démarrage du processus 11304
+[2025-02-18 02:03:41.318] [info]  Application prête
+[2025-02-18 02:03:41.319] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:03:41.347] [info]  Lancement en arrière-plan...
+[2025-02-18 02:03:41.454] [info]  Client Discord RPC prêt.
+[2025-02-18 02:03:41.455] [info]  Client Discord RPC connecté.
+[2025-02-18 02:03:41.460] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:07:27.002] [info]  Démarrage du processus 11424
+[2025-02-18 02:07:27.064] [info]  Application prête
+[2025-02-18 02:07:27.065] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:07:27.091] [info]  Lancement en arrière-plan...
+[2025-02-18 02:07:27.190] [info]  Client Discord RPC prêt.
+[2025-02-18 02:07:27.191] [info]  Client Discord RPC connecté.
+[2025-02-18 02:07:27.197] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:07:30.047] [info]  Fenêtre principale créée.
+[2025-02-18 02:07:54.202] [info]  Démarrage du processus 11487
+[2025-02-18 02:07:54.264] [info]  Application prête
+[2025-02-18 02:07:54.265] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:07:54.295] [info]  Lancement en arrière-plan...
+[2025-02-18 02:07:54.409] [info]  Client Discord RPC prêt.
+[2025-02-18 02:07:54.410] [info]  Client Discord RPC connecté.
+[2025-02-18 02:07:54.417] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:07:56.012] [info]  Fenêtre principale créée.
+[2025-02-18 02:12:03.910] [info]  Démarrage du processus 11619
+[2025-02-18 02:12:03.970] [info]  Application prête
+[2025-02-18 02:12:03.970] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:12:04.000] [info]  Lancement en arrière-plan...
+[2025-02-18 02:12:04.097] [info]  Client Discord RPC prêt.
+[2025-02-18 02:12:04.098] [info]  Client Discord RPC connecté.
+[2025-02-18 02:12:04.104] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:12:06.665] [info]  Fenêtre principale créée.
+[2025-02-18 02:15:53.616] [info]  Démarrage du processus 11736
+[2025-02-18 02:15:53.673] [info]  Application prête
+[2025-02-18 02:15:53.673] [info]  Basepath : /Users/gonzyui/Desktop/git/Actunime-RPC/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron
+[2025-02-18 02:15:53.701] [info]  Lancement en arrière-plan...
+[2025-02-18 02:15:53.812] [info]  Client Discord RPC prêt.
+[2025-02-18 02:15:53.813] [info]  Client Discord RPC connecté.
+[2025-02-18 02:15:53.820] [info]  Statut Discord RPC mis à jour.
+[2025-02-18 02:15:54.955] [info]  Fenêtre principale créée.

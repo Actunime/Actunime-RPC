@@ -1,291 +1,288 @@
-import Electron, { app, Menu, Tray, BrowserWindow, ipcMain, Notification, dialog } from "electron";
-import * as path from "path";
-import RPC from "./discord";
-import appConfig from './config.json';
+import { Low, JSONFile } from "@commonify/lowdb";
 import Twitch, { streamInfo } from "./twitch";
-import unhandled from 'electron-unhandled';
-import { Low, JSONFile } from '@commonify/lowdb';
-import { join } from 'path';
-import * as log from 'electron-log';
+import unhandled from "electron-unhandled";
+import appConfig from "./config.json";
+import * as log from "electron-log";
+import path, { join } from "path";
+import RPC from "./discord";
+import {
+  app,
+  Menu,
+  Tray,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  dialog,
+  shell,
+} from "electron";
 
 app.disableHardwareAcceleration();
 
-log.transports.file.resolvePath = () => join('logs.log');
-
-log.log('Démarrage du processus', process.pid);
+log.transports.file.resolvePath = () => join("logs.log");
+log.log("Démarrage du processus", process.pid);
 
 unhandled({
   showDialog: true,
-  logger: (err) => {
-    log.error(err);
-  }
-})
+  logger: (err) => log.error(err),
+});
 
-const gotTheLock = app.requestSingleInstanceLock();
-
-if (!gotTheLock) {
-  log.log('requestSingleInstanceLock', "une instance en trop a été annulé/fermé.", process.pid);
+if (!app.requestSingleInstanceLock()) {
+  log.log("Une instance supplémentaire a été détectée. Fermeture...", process.pid);
   app.quit();
 }
 
-const showNofifBg = () => new Notification({
-  title: appConfig.name,
-  body: `${appConfig.name} est ouvert en arrière plan.`,
-  icon: __dirname + "/iconx256.ico",
-  urgency: 'low',
-  silent: true
-}).show();
+const showNotifBg = () =>
+    new Notification({
+      title: appConfig.name,
+      body: `${appConfig.name} est ouvert en arrière-plan.`,
+      icon: path.join(__dirname, "../assets/iconx256.ico"),
+      urgency: "low",
+      silent: true,
+    }).show();
 
-
-const createWindow = () => {
-
+const createWindow = (): BrowserWindow => {
   const mainWindow = new BrowserWindow({
     height: 900,
     width: 600,
-    icon: __dirname + "/icon.ico",
+    icon: path.join(__dirname, "../assets/icon.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    autoHideMenuBar: appConfig.dev ? false : true,
-    resizable: appConfig.dev ? true : false
+    autoHideMenuBar: !appConfig.dev,
+    resizable: !!appConfig.dev,
   });
 
   mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
-  // mainWindow.webContents.openDevTools();
-
-  mainWindow.on('close', async (event) => {
+  mainWindow.on("close", (event) => {
     if (mainWindow.isVisible()) {
       event.preventDefault();
       mainWindow.hide();
-      showNofifBg();
+      showNotifBg();
     }
-  })
+  });
 
-  mainWindow.webContents.addListener('new-window', (event, url) => {
+  mainWindow.webContents.on("new-window", (event, url) => {
     event.preventDefault();
-    Electron.shell.openExternal(url);
-  })
-  log.log("Une fenetre a été crée...");
+    shell.openExternal(url);
+  });
+
+  log.log("Fenêtre principale créée.");
   return mainWindow;
-}
+};
 
 app.on("ready", async () => {
+  log.log("Application prête");
+  log.log("Basepath :", app.getPath("exe"));
 
-  log.log('Application prêt');
-
-  var basepath = Electron.app.getPath('exe');
-
-  log.log('basepath', basepath);
-
-  const file = join('db.json')
-  const adapter = new JSONFile<{ [key: string]: any }>(file);
+  const dbFile = join("db.json");
+  const adapter = new JSONFile<{ [key: string]: any }>(dbFile);
   const db = new Low<{ [key: string]: any }>(adapter);
   await db.read();
-
-  if (db.data === null) {
+  if (!db.data) {
     db.data = {};
-    db.data = db.data;
     await db.write();
   }
 
-  let settings = app.getLoginItemSettings();
-  let startAtLogin = settings.executableWillLaunchAtLogin || settings.openAtLogin || settings.wasOpenedAtLogin;
-  let mainWindow: Electron.BrowserWindow | null = null;
+  const settings = app.getLoginItemSettings();
+  const startAtLogin = db.data!["set-auto-start"] || false;
+  app.setLoginItemSettings({
+    openAtLogin: startAtLogin,
+    ...(process.platform === "win32"
+        ? {
+          args: [
+            "--processStart",
+            `"${path.basename(process.execPath)}"`,
+            "--process-start-args",
+            `"--hidden"`,
+          ],
+        }
+        : {}),
+  });
 
-  if (!db.data["set-auto-bg"]) {
-    log.log("création d'une fenetre...");
+  let mainWindow: BrowserWindow | null = null;
+  if (!db.data!["set-auto-bg"]) {
+    log.log("Création d'une fenêtre...");
     mainWindow = createWindow();
   } else {
-    log.log("Ouverture en arrière plan...");
-    showNofifBg();
+    log.log("Lancement en arrière-plan...");
+    showNotifBg();
   }
 
-
-  app.on('second-instance', (event, commandLine, workingDirectory) => {
+  app.on("second-instance", () => {
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       if (!mainWindow.isVisible()) mainWindow.show();
       mainWindow.focus();
     }
-  })
+  });
 
   const rpc = new RPC(app, db);
-  const twitch = new Twitch(db.data['set-stream-user']);
-  let statutStreamConf: { [key: string]: string | number | (object | undefined)[] } = {};
+  const twitch = new Twitch(db.data!["set-stream-user"]);
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const statutStreamConf: { [key: string]: string | number | (object | undefined)[] } = {};
   let streamTwitchLastCache: streamInfo;
 
-  let setStatusConf = (data?: streamInfo) => {
-    if (db.data['set-stream-auto']) {
-      if (db.data['set-stream-desc1'])
-        if (data?.title || streamTwitchLastCache.title) statutStreamConf["details"] = data?.title || streamTwitchLastCache.title;
-        else statutStreamConf["details"] = undefined;
-      else statutStreamConf["details"] = undefined;
-      if (db.data['set-stream-desc2'])
-        if ((data?.game_name || streamTwitchLastCache.game_name) && (data?.viewer_count || streamTwitchLastCache.viewer_count))
-          statutStreamConf['state'] = `${data?.game_name || streamTwitchLastCache.game_name} - ${data?.viewer_count || streamTwitchLastCache.viewer_count} spectateurs`;
-        else statutStreamConf['state'] = undefined;
-      else statutStreamConf['state'] = undefined;
-      if (db.data['set-stream-cooldown'])
-        if (data?.started_at || streamTwitchLastCache.started_at)
-          statutStreamConf['startTimestamp'] = new Date(data?.started_at || streamTwitchLastCache.started_at).getTime();
-        else statutStreamConf['startTimestamp'] = undefined;
-      else statutStreamConf['startTimestamp'] = undefined;
-      if (db.data['set-stream-btn2'])
-        if (data?.user_name || streamTwitchLastCache.user_name)
-          statutStreamConf['buttons'] = [undefined, { label: "Regarder", url: `https://www.twitch.tv/${data?.user_name || streamTwitchLastCache.user_name}` }]
-        else statutStreamConf['buttons'] = undefined;
-      else statutStreamConf['buttons'] = undefined;
+  const setStatusConf = (data?: streamInfo) => {
+    if (db.data!["set-stream-auto"]) {
+      statutStreamConf["details"] = db.data!["set-stream-desc1"]
+          ? data?.title || streamTwitchLastCache?.title
+          : undefined;
+      statutStreamConf["state"] =
+          db.data!["set-stream-desc2"] &&
+          (data?.game_name || streamTwitchLastCache?.game_name) &&
+          (data?.viewer_count || streamTwitchLastCache?.viewer_count)
+              ? `${data?.game_name || streamTwitchLastCache?.game_name} - ${
+                  data?.viewer_count || streamTwitchLastCache?.viewer_count
+              } spectateurs`
+              : undefined;
+      statutStreamConf["startTimestamp"] =
+          db.data!["set-stream-cooldown"] &&
+          (data?.started_at || streamTwitchLastCache?.started_at)
+              ? new Date(data?.started_at || streamTwitchLastCache?.started_at).getTime()
+              : undefined;
+      statutStreamConf["buttons"] =
+          db.data!["set-stream-btn2"] &&
+          (data?.user_name || streamTwitchLastCache?.user_name)
+              ? [
+                undefined,
+                { label: "Regarder", url: `https://www.twitch.tv/${data?.user_name || streamTwitchLastCache?.user_name}` },
+              ]
+              : undefined;
       rpc.setStatus(statutStreamConf);
     }
-  }
+  };
 
-  var inputsCheckbox = [
-    'set-auto-start',
-    'set-auto-bg',
-    'set-stream-auto',
-    'set-stream-desc1',
-    'set-stream-desc2',
-    'set-stream-cooldown',
-    'set-stream-btn2'
-  ]
-
+  const inputsCheckbox = [
+    "set-auto-start",
+    "set-auto-bg",
+    "set-stream-auto",
+    "set-stream-desc1",
+    "set-stream-desc2",
+    "set-stream-cooldown",
+    "set-stream-btn2",
+  ];
   const exeName = path.basename(process.execPath);
 
-  for (let i = 0; i < inputsCheckbox.length; i++) {
-    const id = inputsCheckbox[i];
+  inputsCheckbox.forEach((id) => {
     ipcMain.on(id, async (event, to) => {
-      console.log(id, "a ete modifie en", to);
-      db.data[id] = to ? true : false;
+      console.log(`${id} modifié en`, to);
+      db.data![id] = Boolean(to);
       await db.write();
-      if (id === 'set-auto-start') {
-        if (db.data[id]) {
-          app.setLoginItemSettings({
-            openAtLogin: true,
-            args: [
-              '--processStart', `"${exeName}"`,
-              '--process-start-args', `"--hidden"`
-            ]
-          })
+
+      if (id === "set-auto-start") {
+        app.setLoginItemSettings({
+          openAtLogin: Boolean(db.data![id]),
+          ...(process.platform === "win32"
+              ? {
+                args: [
+                  "--processStart",
+                  `"${exeName}"`,
+                  "--process-start-args",
+                  `"--hidden"`,
+                ],
+              }
+              : {}),
+        });
+      } else if (id === "set-stream-auto") {
+        if (!to) {
+          rpc.setStatus();
+          clearInterval(twitch.interval as unknown as number);
         } else {
-          app.setLoginItemSettings({
-            openAtLogin: false,
-          })
+          setStatusConf();
+          twitch.autoCheckStream();
         }
-      } else
-        if (id === 'set-stream-auto') {
-          if (to === false) {
-            rpc.setStatus();
-            clearInterval(twitch.interval);
-          }
-          else {
-            setStatusConf()
-            twitch.autoCheckStream();
-          }
-        } else
-          if (id !== 'set-auto-bg') setStatusConf();
-    })
-
-    ipcMain.handle(id.replace('set', 'get'), () => {
-      console.log(id, id === 'set-auto-start' ? startAtLogin : db.data?.[id] || false)
-      return id === 'set-auto-start' ? startAtLogin : db.data?.[id] || false;
-    });
-  }
-
-  var inputs = [
-    'set-rpc-id',
-    'set-rpc-desc1',
-    'set-rpc-desc2',
-    'set-rpc-img1',
-    'set-rpc-img2',
-    'set-rpc-img-text1',
-    'set-rpc-img-text2',
-    'set-rpc-btn1',
-    'set-rpc-btn2',
-    'set-rpc-btn-link1',
-    'set-rpc-btn-link2',
-    'set-stream-user'
-  ]
-
-
-  for (let i = 0; i < inputs.length; i++) {
-    const id = inputs[i];
-    ipcMain.on(id, async (_, value) => {
-      console.log(id, "a été modifié en", value);
-      db.data[id] = value?.length ? value : undefined;
-      await db.write();
-      if (id === 'set-rpc-id') {
-        rpc.reload();
-      } else {
-        rpc.setStatus(statutStreamConf);
+      } else if (id !== "set-auto-bg") {
+        setStatusConf();
       }
+    });
 
-      if (id === 'set-stream-user') {
-        let data = await twitch.verifyValidUser(value);
+    ipcMain.handle(id.replace("set", "get"), () => {
+      console.log(`${id} =`, id === "set-auto-start" ? startAtLogin : db.data![id] || false);
+      return id === "set-auto-start" ? startAtLogin : db.data![id] || false;
+    });
+  });
+
+  const inputs = [
+    "set-rpc-id",
+    "set-rpc-desc1",
+    "set-rpc-desc2",
+    "set-rpc-img1",
+    "set-rpc-img2",
+    "set-rpc-img-text1",
+    "set-rpc-img-text2",
+    "set-rpc-btn1",
+    "set-rpc-btn2",
+    "set-rpc-btn-link1",
+    "set-rpc-btn-link2",
+    "set-stream-user",
+  ];
+
+  inputs.forEach((id) => {
+    ipcMain.on(id, async (_, value) => {
+      console.log(`${id} modifié en`, value);
+      db.data![id] = value?.length ? value : undefined;
+      await db.write();
+
+      if (id === "set-rpc-id") rpc.reload();
+      else rpc.setStatus(statutStreamConf);
+
+      if (id === "set-stream-user") {
+        const data = await twitch.verifyValidUser(value);
         if (!data) {
-          dialog.showErrorBox("Streamer introuvable", `la chaine twitch ${value} est introuvable.`);
+          dialog.showErrorBox("Streamer introuvable", `La chaîne Twitch "${value}" est introuvable.`);
           return;
         }
         twitch.changeStreamer(value).catch((err) => {
           dialog.showErrorBox("Une erreur s'est produite", err.toString());
         });
       }
-    })
-
-    ipcMain.handle(id.replace('set', 'get'), () => {
-      return db.data?.[id] || "";
     });
-  }
+    ipcMain.handle(id.replace("set", "get"), () => db.data![id] || "");
+  });
 
-  twitch.on('streaming', async (data) => {
+  twitch.on("streaming", async (data) => {
     streamTwitchLastCache = data;
     await db.read();
     setStatusConf(data);
-  })
-
-  twitch.on('streamStop', () => {
-    if (db.data['set-stream-auto']) {
-      rpc.setStatus();
-    }
-  })
-
-  const tray = new Tray(__dirname + "/icon.ico");
-
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'Fermer', type: 'normal', click: () => {
-        if (mainWindow && mainWindow.isVisible()) mainWindow.hide();
-        app.quit();
-      }
-    },
-    {
-      label: 'Relancer le statut', type: "normal", click: () => {
-        rpc.reload();
-      }
-    }
-  ])
-
-  tray.setContextMenu(contextMenu);
-  tray.setToolTip(appConfig.name);
-  tray.setTitle(appConfig.name);
-
-  tray.on('click', (event) => {
-
-    if (mainWindow) mainWindow.show();
-    else mainWindow = createWindow();
-
+  });
+  twitch.on("streamStop", () => {
+    if (db.data!["set-stream-auto"]) rpc.setStatus();
   });
 
+  let tray: Tray;
+  if (process.platform === "darwin") {
+    tray = new Tray(path.join(__dirname, "../assets/icon22.png"));
+  } else {
+    tray = new Tray(path.join(__dirname, "../assets/icon.ico"));
+  }
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Fermer",
+      type: "normal",
+      click: () => {
+        if (mainWindow && mainWindow.isVisible()) mainWindow.hide();
+        app.quit();
+      },
+    },
+    {
+      label: "Relancer le statut",
+      type: "normal",
+      click: () => rpc.reload(),
+    },
+  ]);
+  tray.setContextMenu(contextMenu);
+  tray.setToolTip(appConfig.name);
+  tray.setTitle(process.platform === "darwin" ? "Actunime RPC" : appConfig.name);
+
+  tray.on("click", () => {
+    if (mainWindow) mainWindow.show();
+    else mainWindow = createWindow();
+  });
 });
 
-if (process.platform === 'win32') {
-  app.setAppUserModelId(app.name)
-}
+if (process.platform === "win32") app.setAppUserModelId(app.name);
 
 app.on("window-all-closed", () => {
-
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-
+  if (process.platform !== "darwin") app.quit();
 });

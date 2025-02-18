@@ -1,4 +1,4 @@
-var inputsCheckbox = [
+const checkboxInputs = [
     'set-auto-bg',
     'set-auto-start',
     'set-stream-auto',
@@ -6,17 +6,19 @@ var inputsCheckbox = [
     'set-stream-desc2',
     'set-stream-cooldown',
     'set-stream-btn2'
-]
+];
 
-for (let i = 0; i < inputsCheckbox.length; i++) {
-    const id = inputsCheckbox[i];
-    document.getElementById(id).onchange = ((event) => {
-        console.log(id, (window as any)[id]);
-        (window as any)[id].send((event.target as any).checked);
-    });
-}
+checkboxInputs.forEach((id) => {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (el) {
+        el.onchange = (event) => {
+            const target = event.target as HTMLInputElement;
+            (window as any)[id].send(target.checked.toString());
+        };
+    }
+});
 
-var inputs2 = [
+const textInputs = [
     'set-rpc-id',
     'set-rpc-desc1',
     'set-rpc-desc2',
@@ -29,11 +31,14 @@ var inputs2 = [
     'set-rpc-btn-link1',
     'set-rpc-btn-link2',
     'set-stream-user'
-]
+];
 
-for (let i = 0; i < inputs2.length; i++) {
-    const id = inputs2[i];
-    document.getElementById(id).onchange = ((event) => {
-        (window as any)[id].send((event.target as any).value);
-    })
-}
+textInputs.forEach((id) => {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (el) {
+        el.onchange = (event) => {
+            const target = event.target as HTMLInputElement;
+            (window as any)[id].send(target.value);
+        };
+    }
+});

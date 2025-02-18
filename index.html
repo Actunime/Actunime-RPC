@@ -1,209 +1,204 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-    <title>Actunime RPC BETA</title>
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-
-    <style>
-      body,
-      html {
-        margin: 0;
-        height: 100%;
-      }
-
-      .pageContent {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        height: calc(100% - 60px);
-      }
-
-      .topBar {
-        background-color: rgb(229, 229, 229);
-        height: 50px;
-        display: grid;
-        align-items: center;
-        padding: 5px 10px;
-      }
-      .topBar h3 {
-        font-size: 25px;
-        margin: 0;
-      }
-
-      .topBar p {
-        font-size: 13px;
-        margin: 0;
-      }
-
-      .options {
-        padding: 5px 10px;
-        display: grid;
-        grid-template-rows: auto auto auto;
-      }
-      .options h3 {
-        margin: 0;
-        margin-bottom: 5px;
-      }
-
-      .config {
-        padding: 5px 10px;
-        display: grid;
-        row-gap: 5px;
-      }
-      .config h3 {
-        margin: 0;
-        margin-bottom: 5px;
-      }
-
-      .config p {
-        margin: 0;
-        font-size: 13px;
-      }
-      .config label {
-        display: grid;
-        grid-template-columns: min-content auto;
-        /* justify-content: left; */
-        column-gap: 10px;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      .config label input[type='checkbox'] {
-        margin-right: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="topBar">
-      <h3>Actunime</h3>
-      <p>Statut customisable par DevLeriTo | Version libre</p>
-    </div>
-    <div class="pageContent">
-      <div class="options">
-        <h3>Options de démarrage</h3>
-        <label>
-          Démarrer avec windows
-          <input id="set-auto-start" type="checkbox"
-        /></label>
-        <label>
-          Démarrer en arrière plan.
-          <input id="set-auto-bg" type="checkbox"
-        /></label>
-      </div>
-      <div class="config">
-        <h3>Configuration du statut</h3>
-        <label
-          >Identifiant client<input id="set-rpc-id" spellcheck="false"
-        /></label>
-        <p>
-          Vous devez vous rendre sur
-          <a href="https://discord.com/developers/applications" target="_blank"
-            >https://discord.com/developers/applications</a
-          >
-          créer une nouvelle application puis copier son Identifiant
-          <b>APPLICATION ID</b> et la coller ci-dessus.
-        </p>
-        <label
-          >Description 1<input id="set-rpc-desc1" spellcheck="false"
-        /></label>
-        <label
-          >Description 2<input id="set-rpc-desc2" spellcheck="false"
-        /></label>
-        <label
-          >Clé de la grande image<input id="set-rpc-img1" spellcheck="false"
-        /></label>
-        <p>
-          Pour avoir une clé vous devez ajouter une image sous la rubrique "Rich
-          Présence" puis "art assets" de votre application puis vous prenez
-          ensuite le nom de l'image.
-        </p>
-        <label
-          >Texte de la grande image<input
-            id="set-rpc-img-text1"
-            spellcheck="false"
-        /></label>
-        <p>
-          Le texte est une mini description quand vous passez la souris sur
-          l'image.
-        </p>
-        <label
-          >Clé de la petite image<input id="set-rpc-img2" spellcheck="false"
-        /></label>
-        <label
-          >Texte de la petite image<input
-            id="set-rpc-img-text2"
-            spellcheck="false"
-        /></label>
-        <label
-          >Nom bouton 1<input
-            placeholder="ex Rejoindre"
-            id="set-rpc-btn1"
-            spellcheck="false"
-        /></label>
-        <label
-          >Lien bouton 1<input
-            placeholder="ex https://google..."
-            id="set-rpc-btn-link1"
-            spellcheck="false"
-        /></label>
-        <p>Lien obligatoire sinon le bouton apparait pas sur le statut.</p>
-        <label
-          >Nom bouton 2<input id="set-rpc-btn2" spellcheck="false"
-        /></label>
-        <label
-          >Lien bouton 2<input id="set-rpc-btn-link2" spellcheck="false"
-        /></label>
-      </div>
-
-      <div class="config">
-        <h3>Streaming twitch</h3>
-        <label
-          >Nom de la chaine twitch<input
-            id="set-stream-user"
-            spellcheck="false"
-        /></label>
-        <label>
-          Mode streamer
-          <input id="set-stream-auto" type="checkbox"
-        /></label>
-        <p>
-          Le mode streamer permet de détecter automatiquement si la chaine
-          twitch renseigné est en live et d'appliquer les paramètres ci-dessous,
-          une actualisation sera faite toute les minutes.
-        </p>
-        <h3>Option statut live en cours</h3>
-        <label>
-          <span>
-            Modifier la
-            <span style="text-decoration: underline">Description 1</span> en
-            titre du live</span
-          >
-          <input id="set-stream-desc1" type="checkbox"
-        /></label>
-        <label>
-          <span
-            >Modifier la
-            <span style="text-decoration: underline">Description 2</span> en nom
-            du jeu streamer avec le nombre de spectateur.</span
-          >
-          <input id="set-stream-desc2" type="checkbox"
-        /></label>
-        <label>
-          Ajouter le temps écroulé depuis le début du live
-          <input id="set-stream-cooldown" type="checkbox"
-        /></label>
-        <label>
-          <span>
-            Modifier le
-            <span style="text-decoration: underline">Bouton 2</span> en
-            "Regarder" avec comme lien direct sur la chaine twitch</span
-          >
-          <input id="set-stream-btn2" type="checkbox"
-        /></label>
-      </div>
-    </div>
-    <!-- You can also require other files to run in this process -->
-    <script src="./build/renderer.js"></script>
-  </body>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Actunime RPC BETA 1.0.4</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .topBar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #e5e5e5;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    .topBar .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .topBar .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .topBar h3 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .topBar .supportBtn {
+      background-color: #007acc;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .topBar .supportBtn:hover {
+      background-color: #005fa3;
+    }
+    .pageContent {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .options, .config {
+      background-color: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .options h3, .config h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .config label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .config label input[type="text"],
+    .config label input[type="url"] {
+      width: 60%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .config label input[type="checkbox"] {
+      margin-left: 10px;
+    }
+    .config p {
+      font-size: 12px;
+      color: #777;
+      margin: 5px 0 10px;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="topBar">
+  <div class="left">
+    <img class="logo" src="assets/icon.png" alt="Logo Actunime RPC" />
+    <h3>Actunime RPC</h3>
+  </div>
+  <button class="supportBtn" onclick="window.open('https://discord.gg/pjFXwKKgEu', '_blank')">
+    Support
+  </button>
+</div>
+<div class="pageContent">
+  <div class="options">
+    <h3>Options de lancement</h3>
+    <label>
+      Lancer au démarrage
+      <input id="set-auto-start" type="checkbox" />
+    </label>
+    <label>
+      Lancer en arrière-plan
+      <input id="set-auto-bg" type="checkbox" />
+    </label>
+  </div>
+  <div class="config">
+    <h3>Configuration du statut Discord</h3>
+    <label>
+      Identifiant client
+      <input id="set-rpc-id" type="text" placeholder="Votre client ID Discord" spellcheck="false" />
+    </label>
+    <p>
+      Rendez-vous sur
+      <a href="https://discord.com/developers/applications" target="_blank">
+        Discord Developer Portal
+      </a> pour obtenir votre Application ID.
+    </p>
+    <label>
+      Description 1
+      <input id="set-rpc-desc1" type="text" placeholder="Description 1" spellcheck="false" />
+    </label>
+    <label>
+      Description 2
+      <input id="set-rpc-desc2" type="text" placeholder="Description 2" spellcheck="false" />
+    </label>
+    <label>
+      Clé de la grande image
+      <input id="set-rpc-img1" type="text" placeholder="URL de l'avatar" spellcheck="false" />
+    </label>
+    <label>
+      Texte de la grande image
+      <input id="set-rpc-img-text1" type="text" placeholder="Texte alternatif" spellcheck="false" />
+    </label>
+    <label>
+      Nom bouton 1
+      <input id="set-rpc-btn1" type="text" placeholder="Ex: Rejoindre" spellcheck="false" />
+    </label>
+    <label>
+      Lien bouton 1
+      <input id="set-rpc-btn-link1" type="url" placeholder="Ex: https://..." spellcheck="false" />
+    </label>
+    <p>Lien obligatoire sinon le bouton n'apparaît pas.</p>
+    <label>
+      Nom bouton 2
+      <input id="set-rpc-btn2" type="text" placeholder="Ex: Visiter" spellcheck="false" />
+    </label>
+    <label>
+      Lien bouton 2
+      <input id="set-rpc-btn-link2" type="url" placeholder="Ex: https://..." spellcheck="false" />
+    </label>
+  </div>
+  <div class="config">
+    <h3>Configuration Twitch</h3>
+    <label>
+      Nom de la chaîne Twitch
+      <input id="set-stream-user" type="text" placeholder="Nom de la chaîne" spellcheck="false" />
+    </label>
+    <label>
+      Mode streamer
+      <input id="set-stream-auto" type="checkbox" />
+    </label>
+    <p>
+      Activez le mode streamer pour détecter automatiquement si la chaîne est en direct.
+      L'actualisation se fait toutes les minutes.
+    </p>
+    <h3>Options du statut live</h3>
+    <label>
+      Utiliser le titre du live comme Description 1
+      <input id="set-stream-desc1" type="checkbox" />
+    </label>
+    <label>
+      Afficher le jeu et les spectateurs en Description 2
+      <input id="set-stream-desc2" type="checkbox" />
+    </label>
+    <label>
+      Ajouter le temps écoulé depuis le début du live
+      <input id="set-stream-cooldown" type="checkbox" />
+    </label>
+    <label>
+      Activer le bouton "Regarder"
+      <input id="set-stream-btn2" type="checkbox" />
+    </label>
+  </div>
+</div>
+<script src="./build/renderer.js"></script>
+</body>
 </html>

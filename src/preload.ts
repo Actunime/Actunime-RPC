@@ -1,22 +1,16 @@
-// All of the Node.js APIs are available in the preload process.
-// It has the same sandbox as a Chrome extension.
+import { contextBridge, ipcRenderer } from 'electron';
 
-const { contextBridge, ipcRenderer, ipcMain } = require('electron');
-
-window.addEventListener("DOMContentLoaded", async () => {
+window.addEventListener('DOMContentLoaded', async () => {
   const replaceText = (selector: string, text: string) => {
-    const element = document.getElementById(selector);
-    if (element) {
-      element.innerText = text;
-    }
+    const el = document.getElementById(selector);
+    if (el) el.innerText = text;
   };
 
-  for (const type of ["chrome", "node", "electron"]) {
-    replaceText(`${type}-version`, process.versions[type as keyof NodeJS.ProcessVersions]);
-  }
+  ['chrome', 'node', 'electron'].forEach((type) =>
+      replaceText(`${type}-version`, process.versions[type as keyof NodeJS.ProcessVersions] || '')
+  );
 
-
-  var inputsCheckbox = [
+  const inputsCheckbox = [
     'set-auto-start',
     'set-auto-bg',
     'set-stream-auto',
@@ -24,18 +18,17 @@ window.addEventListener("DOMContentLoaded", async () => {
     'set-stream-desc2',
     'set-stream-cooldown',
     'set-stream-btn2'
-  ]
+  ];
 
-  for (let o = 0; o < inputsCheckbox.length; o++) {
-    const id = inputsCheckbox[o];
-    const res = await ipcRenderer.invoke(id.replace('set', 'get'));
-    let element = document.getElementById(id);
-    if (element) {
-      (element as any).checked = res;
-    }
-  }
+  await Promise.all(
+      inputsCheckbox.map(async (id) => {
+        const res = await ipcRenderer.invoke(id.replace('set', 'get'));
+        const el = document.getElementById(id) as HTMLInputElement | null;
+        if (el) el.checked = res;
+      })
+  );
 
-  let inputs = [
+  const inputs = [
     'get-rpc-id',
     'get-rpc-desc1',
     'get-rpc-desc2',
@@ -53,19 +46,19 @@ window.addEventListener("DOMContentLoaded", async () => {
     'get-stream-desc2',
     'get-stream-cooldown',
     'get-stream-btn2'
-  ]
+  ];
 
-  for (let i = 0; i < inputs.length; i++) {
-    const id = inputs[i];
-    let docRes = await ipcRenderer.invoke(id);
-    console.log(docRes)
-    let doc = document.getElementById(id.replace('get', 'set'));
-    (doc as any).defaultValue = docRes;
-  }
-
+  await Promise.all(
+      inputs.map(async (id) => {
+        const res = await ipcRenderer.invoke(id);
+        console.log(`${id} =`, res);
+        const el = document.getElementById(id.replace('get', 'set')) as HTMLInputElement | null;
+        if (el) el.defaultValue = res;
+      })
+  );
 });
 
-let inputs = [
+const exposedInputs = [
   'set-auto-start',
   'set-auto-bg',
   'set-rpc-id',
@@ -85,13 +78,10 @@ let inputs = [
   'set-stream-desc2',
   'set-stream-cooldown',
   'set-stream-btn2'
-]
+];
 
-for (let i = 0; i < inputs.length; i++) {
-  const id = inputs[i];
+exposedInputs.forEach((id) => {
   contextBridge.exposeInMainWorld(id, {
-    send: (arg: string) => {
-      ipcRenderer.send(id, arg)
-    }
+    send: (arg: string) => ipcRenderer.send(id, arg)
   });
-}
+});
