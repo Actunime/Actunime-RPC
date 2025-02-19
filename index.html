@@ -2,13 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Actunime RPC BETA 1.0.4</title>
+  <title>Actunime RPC BETA 1.0.5</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -19,9 +15,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #e5e5e5;
+      background: linear-gradient(90deg, #7289da, #5b6eae);
       padding: 10px 20px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
     .topBar .left {
       display: flex;
@@ -29,25 +25,27 @@
       gap: 10px;
     }
     .topBar .logo {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       object-fit: contain;
     }
     .topBar h3 {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 600;
+      color: #fff;
     }
     .topBar .supportBtn {
-      background-color: #007acc;
-      color: #fff;
+      background-color: #fff;
+      color: #7289da;
       border: none;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: 4px;
       cursor: pointer;
+      font-weight: 500;
       transition: background-color 0.3s;
     }
     .topBar .supportBtn:hover {
-      background-color: #005fa3;
+      background-color: #e6e6e6;
     }
     .pageContent {
       display: flex;
@@ -58,34 +56,41 @@
     }
     .options, .config {
       background-color: #fff;
-      padding: 15px 20px;
+      padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .options h3, .config h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 22px;
+      margin-bottom: 15px;
       color: #444;
     }
     .config label {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       font-weight: 500;
     }
     .config label input[type="text"],
     .config label input[type="url"] {
       width: 60%;
-      padding: 5px;
+      padding: 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+    .config label input[type="text"]:focus,
+    .config label input[type="url"]:focus {
+      border-color: #007acc;
+      outline: none;
     }
     .config label input[type="checkbox"] {
       margin-left: 10px;
+      transform: scale(1.2);
     }
     .config p {
-      font-size: 12px;
+      font-size: 13px;
       color: #777;
       margin: 5px 0 10px;
     }
@@ -95,6 +100,72 @@
     }
     a:hover {
       text-decoration: underline;
+    }
+    .previewStatus {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .previewStatus h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .statusPreview {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .imageContainer {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+    .bigImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .smallImage {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+    .textContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .descriptions { margin-bottom: 10px; }
+    .desc1, .desc2 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .buttonsContainer {
+      display: flex;
+      gap: 10px;
+    }
+    .statusBtn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007acc;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .statusBtn:hover {
+      background-color: #005fa3;
     }
   </style>
 </head>
@@ -120,56 +191,87 @@
       <input id="set-auto-bg" type="checkbox" />
     </label>
   </div>
+
   <div class="config">
     <h3>Configuration du statut Discord</h3>
     <label>
-      Identifiant client
+      Identifiant
       <input id="set-rpc-id" type="text" placeholder="Votre client ID Discord" spellcheck="false" />
     </label>
     <p>
       Rendez-vous sur
       <a href="https://discord.com/developers/applications" target="_blank">
         Discord Developer Portal
-      </a> pour obtenir votre Application ID.
+      </a>
+      pour obtenir votre Application ID.
     </p>
     <label>
-      Description 1
+      Titre
       <input id="set-rpc-desc1" type="text" placeholder="Description 1" spellcheck="false" />
     </label>
     <label>
-      Description 2
+      Description
       <input id="set-rpc-desc2" type="text" placeholder="Description 2" spellcheck="false" />
     </label>
     <label>
-      Clé de la grande image
-      <input id="set-rpc-img1" type="text" placeholder="URL de l'avatar" spellcheck="false" />
+      Large Image
+      <input id="set-rpc-img1" type="text" placeholder="URL de la grande image" spellcheck="false" />
     </label>
     <label>
-      Texte de la grande image
-      <input id="set-rpc-img-text1" type="text" placeholder="Texte alternatif" spellcheck="false" />
+      Texte
+      <input id="set-rpc-img-text1" type="text" placeholder="Texte alternatif pour la grande image" spellcheck="false" />
     </label>
     <label>
-      Nom bouton 1
+      Petite Image
+      <input id="set-rpc-img2" type="text" placeholder="URL de la petite image" spellcheck="false" />
+    </label>
+    <label>
+      Texte
+      <input id="set-rpc-img-text2" type="text" placeholder="Texte alternatif pour la petite image" spellcheck="false" />
+    </label>
+    <label>
+      Titre bouton
       <input id="set-rpc-btn1" type="text" placeholder="Ex: Rejoindre" spellcheck="false" />
     </label>
     <label>
-      Lien bouton 1
+      Lien bouton
       <input id="set-rpc-btn-link1" type="url" placeholder="Ex: https://..." spellcheck="false" />
     </label>
     <p>Lien obligatoire sinon le bouton n'apparaît pas.</p>
     <label>
-      Nom bouton 2
+      Titre bouton
       <input id="set-rpc-btn2" type="text" placeholder="Ex: Visiter" spellcheck="false" />
     </label>
     <label>
-      Lien bouton 2
+      Lien bouton
       <input id="set-rpc-btn-link2" type="url" placeholder="Ex: https://..." spellcheck="false" />
     </label>
   </div>
+
+  <div class="previewStatus">
+    <h3>Prévisualisation du statut</h3>
+    <div class="statusPreview">
+      <div class="imageContainer">
+        <img class="bigImage" src="" alt="">
+        <img class="smallImage" src="" alt="">
+      </div>
+      <div class="textContainer">
+        <div class="descriptions">
+          <p class="desc1"></p>
+          <p class="desc2"></p>
+        </div>
+        <div class="buttonsContainer">
+          <button class="statusBtn"></button>
+          <button class="statusBtn"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="config">
     <h3>Configuration Twitch</h3>
     <label>
-      Nom de la chaîne Twitch
+      Pseudo Twitch
       <input id="set-stream-user" type="text" placeholder="Nom de la chaîne" spellcheck="false" />
     </label>
     <label>
@@ -182,11 +284,11 @@
     </p>
     <h3>Options du statut live</h3>
     <label>
-      Utiliser le titre du live comme Description 1
+      Utiliser le titre du live comme Titre
       <input id="set-stream-desc1" type="checkbox" />
     </label>
     <label>
-      Afficher le jeu et les spectateurs en Description 2
+      Afficher le jeu et les spectateurs en Description
       <input id="set-stream-desc2" type="checkbox" />
     </label>
     <label>
@@ -199,6 +301,78 @@
     </label>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const desc1Input = document.getElementById("set-rpc-desc1");
+    const desc2Input = document.getElementById("set-rpc-desc2");
+    const bigImgInput = document.getElementById("set-rpc-img1");
+    const bigImgAltInput = document.getElementById("set-rpc-img-text1");
+    const smallImgInput = document.getElementById("set-rpc-img2");
+    const smallImgAltInput = document.getElementById("set-rpc-img-text2");
+    const btn1Input = document.getElementById("set-rpc-btn1");
+    const btn1LinkInput = document.getElementById("set-rpc-btn-link1");
+    const btn2Input = document.getElementById("set-rpc-btn2");
+    const btn2LinkInput = document.getElementById("set-rpc-btn-link2");
+
+    const previewDesc1 = document.querySelector(".desc1");
+    const previewDesc2 = document.querySelector(".desc2");
+    const previewBigImage = document.querySelector(".bigImage");
+    const previewSmallImage = document.querySelector(".smallImage");
+    const previewBtn1 = document.querySelector(".buttonsContainer .statusBtn:nth-child(1)");
+    const previewBtn2 = document.querySelector(".buttonsContainer .statusBtn:nth-child(2)");
+
+    function updatePreview() {
+      previewDesc1.textContent = desc1Input.value;
+      previewDesc2.textContent = desc2Input.value;
+
+      if (bigImgInput.value.trim() === "") {
+        previewBigImage.style.display = "none";
+      } else {
+        previewBigImage.style.display = "block";
+        previewBigImage.src = bigImgInput.value;
+        previewBigImage.alt = bigImgAltInput.value;
+      }
+
+      if (smallImgInput.value.trim() === "") {
+        previewSmallImage.style.display = "none";
+      } else {
+        previewSmallImage.style.display = "block";
+        previewSmallImage.src = smallImgInput.value;
+        previewSmallImage.alt = smallImgAltInput.value;
+      }
+
+      if (btn1Input.value.trim() === "" || btn1LinkInput.value.trim() === "") {
+        previewBtn1.style.display = "none";
+      } else {
+        previewBtn1.style.display = "block";
+        previewBtn1.textContent = btn1Input.value;
+      }
+
+      if (btn2Input.value.trim() === "" || btn2LinkInput.value.trim() === "") {
+        previewBtn2.style.display = "none";
+      } else {
+        previewBtn2.style.display = "block";
+        previewBtn2.textContent = btn2Input.value;
+      }
+    }
+
+    const inputs = [
+      desc1Input,
+      desc2Input,
+      bigImgInput,
+      bigImgAltInput,
+      smallImgInput,
+      smallImgAltInput,
+      btn1Input,
+      btn1LinkInput,
+      btn2Input,
+      btn2LinkInput,
+    ];
+
+    inputs.forEach(input => input.addEventListener("input", updatePreview));
+  });
+</script>
 <script src="./build/renderer.js"></script>
 </body>
 </html>
