@@ -13,8 +13,8 @@ export interface streamInfo {
 }
 
 class Twitch extends EventEmitter {
-    public clientID = "3x68mems6suc5g0u1s1uctdhv9vdlk";
-    public clientSecret = "ng9hizfpy634gyy6ffg2jdhd1ebyhx";
+    public clientID = "votre_client_id_twitch";
+    public clientSecret = "votre_client_secret_twitch";
     public user?: string;
     public streamOn = false;
     public interval?: NodeJS.Timer;
